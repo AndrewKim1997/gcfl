@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2509.02391">
     <img alt="arXiv: 2509.02391"
-         src="https://img.shields.io/badge/arXiv%3A%202508.17412-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
+         src="https://img.shields.io/badge/arXiv%3A%202509.02391-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
   </a>
   <a href="https://doi.org/">
     <img alt="Journal: Transactions on Machine Learning Research"
