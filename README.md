@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="https://arxiv.org/abs/2509.02391">
-    <img alt="arXiv: 2509.02391"
-         src="https://img.shields.io/badge/arXiv%3A%202509.02391-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
-  </a>
   <a href="https://openreview.net/forum?id=Ck3q5YdWIv">
     <img alt="Journal: Transactions on Machine Learning Research"
          src="https://img.shields.io/badge/Transactions_on_Machine_Learning_Research-1e3787?style=flat-square&logo=tumblr&logoColor=white&labelColor=1e3787">
+  </a>
+  <a href="https://arxiv.org/abs/2509.02391">
+    <img alt="arXiv: 2509.02391"
+         src="https://img.shields.io/badge/arXiv%3A%202509.02391-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
   </a>
   <img alt="Python 3.10+"
        src="https://img.shields.io/badge/Python%203.10%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=3776AB">
