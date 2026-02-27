@@ -17,10 +17,11 @@ authors:
     given-names: "Oh"
 
 keywords:
-  - federated learning
-  - robustness
-  - security
-  - monitoring
+  - Federated Learning
+  - Security & Privacy
+  - Robustness
+  - Incentives & Game Theory
+  - Monitoring & Auditing
 
 preferred-citation:
   type: article
