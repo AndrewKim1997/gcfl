@@ -27,7 +27,7 @@
 > Standalone notebooks that reproduce the paper tables for our “FL as a governed strategic system” view—separating welfare-improving behavior from metric gaming, and supporting monitoring via manipulability / price-of-gaming / price-of-cooperation indices and audit-oriented tooling.
 
 - **Paper**: _Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It_
-  - **TMLR**: https://openreview.net/forum?id=Ck3q5YdWIv&referrer
+  - **TMLR**: https://openreview.net/forum?id=Ck3q5YdWIv
   - **arXiv**: https://arxiv.org/abs/2509.02391 
 - **What this repo provides**: table-reproduction notebooks that print **only the corresponding table** to the console (no noisy intermediate logs).
 
