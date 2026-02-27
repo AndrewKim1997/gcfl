@@ -93,7 +93,6 @@ jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" 
 ## 📁 Repository structure (typical)
 
 ```
-.
 ├── notebooks/
 │   ├── Table_1_3(stylized_simulation).ipynb
 │   ├── Table_4(real_world_FL).ipynb
