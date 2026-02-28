@@ -162,6 +162,3 @@ If you use this code, please cite the paper and this repository.
 ## ⚖ License
 
 This project is released under the terms of the license in `LICENSE`.
-
-```
-```
