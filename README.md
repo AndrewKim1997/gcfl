@@ -7,6 +7,10 @@
     <img alt="arXiv: 2509.02391"
          src="https://img.shields.io/badge/arXiv%3A%202509.02391-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
   </a>
+  <a href="https://colab.research.google.com">
+    <img alt="Google Colab"
+       src="https://img.shields.io/badge/Google%20Colab-F9AB00?style=flat-square&logo=googlecolab&logoColor=white&labelColor=F9AB00">
+  </a>
   <img alt="Python 3.10+"
        src="https://img.shields.io/badge/Python%203.10%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=3776AB">
   <a href="LICENSE">
@@ -18,21 +22,28 @@
 <h1 align="center">GCFL: Reproducibility Code</h1>
 
 <p align="center">
-  <a href="#-quick-start">Quick start</a> •
-  <a href="#-reproduce-paper-tables">Reproduce</a> •
-  <a href="#-reproducibility-notes">Notes</a> •
-  <a href="#-citation">Cite</a>
+  <a href="#quick-start">Quick start</a> •
+  <a href="#reproduce-paper-tables">Reproduce</a> •
+  <a href="#running-on-google-colab-optional">Colab</a> •
+  <a href="#reproducibility-notes">Notes</a> •
+  <a href="#citation">Cite</a>
 </p>
 
-> Standalone notebooks that reproduce the paper tables for our “FL as a governed strategic system” view—separating welfare-improving behavior from metric gaming, and supporting monitoring via manipulability / price-of-gaming / price-of-cooperation indices and audit-oriented tooling.
+> This repository reproduces the paper’s core tables for **Gaming and Cooperation in Federated Learning**, which studies federated learning as a **strategic, governed system**: clients may **game metrics**, **free-ride**, **collude**, or **attack**, and these behaviors can distort reported progress and reduce welfare.  
+
+> The paper proposes **monitoring- and audit-oriented diagnostics** (e.g., manipulability / price-of-gaming / price-of-cooperation style indices) to separate **welfare-improving** updates from **strategic** ones, and evaluates them in stylized simulations and modern FL benchmarks.  
+
+> Each notebook in this repo is **standalone** and prints **only the corresponding paper table** (minimal logs) for reproducibility.
 
 - **Paper**: _Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It_
   - **TMLR**: https://openreview.net/forum?id=Ck3q5YdWIv
-  - **arXiv**: https://arxiv.org/abs/2509.02391 
+  - **arXiv**: https://arxiv.org/abs/2509.02391
 - **What this repo provides**: table-reproduction notebooks that print **only the corresponding table** to the console (no noisy intermediate logs).
+- **Supplementary notebook (original)**: `notebooks/original/GCFL_main.ipynb` is the original supplementary material notebook uploaded to OpenReview (kept here for reference).
 
 ---
 
+<a id="quick-start"></a>
 ## ⚡ Quick start
 
 ### Setup
@@ -53,7 +64,9 @@ jupyter nbconvert --to python --stdout "notebooks/Table_4(real_world_FL).ipynb" 
 
 ---
 
-## 🧪 Reproduce paper tables
+<a id="reproduce-paper-tables"></a>
+
+## ⟲ Reproduce paper tables
 
 Each notebook is standalone and prints **only** its table.
 
@@ -84,7 +97,32 @@ jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" 
 
 ---
 
-## 🧷 Reproducibility notes
+<a id="running-on-google-colab-optional"></a>
+
+## ☁ Running on Google Colab (optional)
+
+You can also run the notebooks on **Google Colab** after downloading/cloning this repository.
+
+1. Clone (or upload) this repository into your Colab environment.
+2. Install dependencies.
+3. Open any notebook under `notebooks/` and run all cells.
+
+### Minimal Colab setup cell
+
+```python
+# In a Colab notebook cell
+!git clone https://github.com/AndrewKim1997/gcfl.git
+%cd gcfl
+!pip install -q -r requirements.txt
+```
+
+> We do not provide a hosted Colab runtime; the notebooks run in your own Colab environment after cloning/downloading this repo.
+
+---
+
+<a id="reproducibility-notes"></a>
+
+## ✎ Reproducibility notes
 
 * Random seeds are fixed inside each notebook (see the `seed` field in the config).
 * Notebooks are designed to avoid noisy intermediate logs and print table-ready summaries only.
@@ -92,7 +130,7 @@ jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" 
 
 ---
 
-## 📁 Repository structure (typical)
+## ▦ Repository structure (typical)
 
 ```
 ├── notebooks/
@@ -101,7 +139,9 @@ jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" 
 │   ├── Table_5(estimator_reliability).ipynb
 │   ├── Table_6(noise_and_auditability).ipynb
 │   ├── Table_7(high_alignment_metrics).ipynb
-│   └── Table_8(modern_attack).ipynb
+│   ├── Table_8(modern_attack).ipynb
+│   └── original/
+│       └── GCFL_main.ipynb
 ├── requirements.txt
 ├── CITATION.cff
 └── LICENSE
@@ -109,7 +149,9 @@ jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" 
 
 ---
 
-## 📚 Citation
+<a id="citation"></a>
+
+## ❖ Citation
 
 If you use this code, please cite the paper and this repository.
 
@@ -117,6 +159,9 @@ If you use this code, please cite the paper and this repository.
 
 ---
 
-## 📝 License
+## ⚖ License
 
 This project is released under the terms of the license in `LICENSE`.
+
+```
+```
