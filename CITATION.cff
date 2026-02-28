@@ -7,14 +7,14 @@ repository-code: "https://github.com/AndrewKim1997/gcfl"
 url: "https://github.com/AndrewKim1997/gcfl"
 
 authors:
-  - family-names: "Dongseok"
-    given-names: "Kim"
-  - family-names: "Hyoungsun"
-    given-names: "Choi"
-  - family-names: "Mohamed Jismy"
-    given-names: "Aashik Rasool"
-  - family-names: "Gisung"
-    given-names: "Oh"
+  - family-names: "Kim"
+    given-names: "Dongseok"
+  - family-names: "Choi"
+    given-names: "Hyoungsun"
+  - family-names: "Aashik Rasool"
+    given-names: "Mohamed Jismy"
+  - family-names: "Oh"
+    given-names: "Gisung"
 
 keywords:
   - Federated Learning
@@ -27,14 +27,14 @@ preferred-citation:
   type: article
   title: "Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It"
   authors:
-  - family-names: "Dongseok"
-    given-names: "Kim"
-  - family-names: "Hyoungsun"
-    given-names: "Choi"
-  - family-names: "Mohamed Jismy"
-    given-names: "Aashik Rasool"
-  - family-names: "Gisung"
-    given-names: "Oh"
+    - family-names: "Kim"
+      given-names: "Dongseok"
+    - family-names: "Choi"
+      given-names: "Hyoungsun"
+    - family-names: "Aashik Rasool"
+      given-names: "Mohamed Jismy"
+    - family-names: "Oh"
+      given-names: "Gisung"
   journal: "Transactions on Machine Learning Research"
   year: 2026
   url: "https://openreview.net/forum?id=Ck3q5YdWIv"
