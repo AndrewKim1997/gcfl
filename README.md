@@ -155,6 +155,19 @@ You can also run the notebooks on **Google Colab** after downloading/cloning thi
 
 If you use this code, please cite the paper and this repository.
 
+```
+@article{
+kim2026gaming,
+title={Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It},
+author={Dongseok Kim and Hyoungsun Choi and Mohamed Jismy Aashik Rasool and Gisung Oh},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2026},
+url={https://openreview.net/forum?id=Ck3q5YdWIv},
+note={}
+}
+```
+
 * See `CITATION.cff` for citation metadata.
 
 ---
