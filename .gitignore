@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# GCFL experiment downloads and generated results
+data/
+E1_estimator_reliability_results.csv
+E2_noise_privacy_tradeoff_results.csv
+E3_high_alignment_metric_sweep_results.csv
+E4_outputs_noLEAF/
