@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gcfl-research"
+version = "0.1.0"
+description = "Code for Gaming and Cooperation in Federated Learning"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = ["numpy>=1.23", "pandas>=1.5"]
+
+[project.optional-dependencies]
+experiments = [
+  "torch>=2.0",
+  "torchvision>=0.15",
+  "pillow>=9.0",
+  "tqdm>=4.65",
+  "datasets>=2.14",
+  "flwr-datasets[vision]",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
