@@ -1,177 +1,68 @@
-<p align="center">
-  <a href="https://openreview.net/forum?id=Ck3q5YdWIv">
-    <img alt="Journal: Transactions on Machine Learning Research"
-         src="https://img.shields.io/badge/Transactions_on_Machine_Learning_Research-1e3787?style=flat-square&logo=googledocs&logoColor=white&labelColor=1e3787">
-  </a>
-  <a href="https://arxiv.org/abs/2509.02391">
-    <img alt="arXiv: 2509.02391"
-         src="https://img.shields.io/badge/arXiv%3A%202509.02391-b31b1b?style=flat-square&logo=arXiv&logoColor=white&labelColor=b31b1b">
-  </a>
-  <a href="https://colab.research.google.com">
-    <img alt="Google Colab"
-       src="https://img.shields.io/badge/Google%20Colab-F9AB00?style=flat-square&logo=googlecolab&logoColor=white&labelColor=F9AB00">
-  </a>
-  <img alt="Python 3.10+"
-       src="https://img.shields.io/badge/Python%203.10%2B-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=3776AB">
-  <a href="LICENSE">
-    <img alt="License"
-         src="https://img.shields.io/badge/License-See%20LICENSE-16a34a?style=flat-square&logo=opensourceinitiative&logoColor=white&labelColor=16a34a">
-  </a>
-</p>
+# GCFL
 
-<h1 align="center">GCFL: Reproducibility Code</h1>
+**Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It**  
+Official research code · Transactions on Machine Learning Research (TMLR), 2026
 
-<p align="center">
-  <a href="#quick-start">Quick start</a> •
-  <a href="#reproduce-paper-tables">Reproduce</a> •
-  <a href="#running-on-google-colab-optional">Colab</a> •
-  <a href="#reproducibility-notes">Notes</a> •
-  <a href="#citation">Cite</a>
-</p>
+[Paper (OpenReview)](https://openreview.net/forum?id=Ck3q5YdWIv) · [Camera-ready preprint](https://arxiv.org/abs/2509.02391) · [Quick start](#quick-start) · [Paper experiments](#paper-experiments) · [Reproducibility](docs/reproducibility.md) · [License](LICENSE)
 
-> This repository reproduces the paper’s core tables for **Gaming and Cooperation in Federated Learning**, which studies federated learning as a **strategic, governed system**: clients may **game metrics**, **free-ride**, **collude**, or **attack**, and these behaviors can distort reported progress and reduce welfare.  
+GCFL studies federated learning as a strategic system: clients may game public metrics, free-ride, collude, or attack. The paper develops monitoring and audit-oriented indices, including manipulability, the price of gaming, and the price of cooperation. This repository provides the original experimental record, scripts extracted from it, and a small reusable interface for the stylized simulation.
 
-> The paper proposes **monitoring- and audit-oriented diagnostics** (e.g., manipulability / price-of-gaming / price-of-cooperation style indices) to separate **welfare-improving** updates from **strategic** ones, and evaluates them in stylized simulations and modern FL benchmarks.  
+## Method at a glance
 
-> Each notebook in this repo is **standalone** and prints **only the corresponding paper table** (minimal logs) for reproducibility.
+The experiments compare a public metric with underlying welfare as client behavior and governance rules change. For aligned and gaming scenarios with positive aligned welfare, the price of gaming is `(W_aligned - W_gaming) / W_aligned`. Audits and penalties can change participation and the metric–welfare gap. See the [paper](https://openreview.net/forum?id=Ck3q5YdWIv) for the full framework and assumptions.
 
-- **Paper**: _Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It_
-  - **TMLR**: https://openreview.net/forum?id=Ck3q5YdWIv
-  - **arXiv**: https://arxiv.org/abs/2509.02391
-- **What this repo provides**: table-reproduction notebooks that print **only the corresponding table** to the console (no noisy intermediate logs).
-- **Supplementary notebook (original)**: `notebooks/original/GCFL_main.ipynb` is the original supplementary material notebook uploaded to OpenReview (kept here for reference).
+## Quick start
 
----
-
-<a id="quick-start"></a>
-## ⚡ Quick start
-
-### Setup
+With Python 3.10 or newer, run from the repository root:
 
 ```bash
-pip install -r requirements.txt
-````
+python -m pip install -e .
+python examples/basic_usage.py
+```
 
-### Run a notebook from the terminal (recommended)
+The [small example](examples/basic_usage.py) compares aligned and gaming scenarios with 20 clients and 30 rounds. It is illustrative and does not reproduce a paper table. [`src/gcfl/stylized.py`](src/gcfl/stylized.py) contains the simulation and PoG estimator copied from the original notebook, while [`src/gcfl/__init__.py`](src/gcfl/__init__.py) exposes the small public API.
 
-Notebooks are executed by converting to a temporary Python script and piping to `python`, so printed tables appear in your terminal:
+## Paper experiments
+
+Install the additional dependencies, then run each script from the repository root:
 
 ```bash
-jupyter nbconvert --to python --stdout "notebooks/Table_4(real_world_FL).ipynb" | python -
+python -m pip install -e '.[experiments]'
+python experiments/01_stylized_simulation.py      # Tables 1–3
+python experiments/02_real_world_fl.py            # Table 4: Fashion-MNIST
+python experiments/03_estimator_reliability.py    # Table 5: partial audits
+python experiments/04_noise_and_auditability.py   # Table 6: noise and audits
+python experiments/05_high_alignment_metrics.py  # Table 7: metric alignment
+python experiments/06_modern_attack.py            # Table 8: FEMNIST
 ```
 
-> Note: filenames include parentheses, so **quotes are required** in most shells.
+These scripts are exact text extracts of the paper's original experimental code cells. They retain the original progress messages and generated files. Fashion-MNIST and FEMNIST are downloaded on first use; federated runs may take substantial time. The [experiment-to-result and output notes](docs/reproducibility.md) give the mapping and file locations.
 
----
+## Source and reproducibility
 
-<a id="reproduce-paper-tables"></a>
-
-## ⟲ Reproduce paper tables
-
-Each notebook is standalone and prints **only** its table.
+[`archive/GCFL_main.ipynb`](archive/GCFL_main.ipynb) is the unmodified notebook the author used for the paper experiments. [`tools/extract_experiments.py`](tools/extract_experiments.py) verifies its SHA-256 and regenerates the six standalone scripts and reusable stylized simulator from specified source cells. The Colab `!pip` setup cell is represented by the installation command above. To check that the committed code still matches the archived source:
 
 ```bash
-# Tables 1–3 (stylized simulation)
-jupyter nbconvert --to python --stdout "notebooks/Table_1_3(stylized_simulation).ipynb" | python -
-
-# Table 4 (Fashion-MNIST FL: head metric vs tail welfare)
-jupyter nbconvert --to python --stdout "notebooks/Table_4(real_world_FL).ipynb" | python -
-
-# Table 5 (E1: estimator reliability under audits)
-jupyter nbconvert --to python --stdout "notebooks/Table_5(estimator_reliability).ipynb" | python -
-
-# Table 6 (E2: noise/privacy trade-off)
-jupyter nbconvert --to python --stdout "notebooks/Table_6(noise_and_auditability).ipynb" | python -
-
-# Table 7 (E3: high-alignment metric sweep)
-jupyter nbconvert --to python --stdout "notebooks/Table_7(high_alignment_metrics).ipynb" | python -
-
-# Table 8 (E4: FEMNIST modern attack–defense replication)
-jupyter nbconvert --to python --stdout "notebooks/Table_8(modern_attack).ipynb" | python -
+python tools/extract_experiments.py --check
 ```
 
-**Notes**
+The previous, edited, table-formatted notebooks were removed from the current tree; they remain in the [pre-reorganization commit](https://github.com/AndrewKim1997/gcfl/tree/9ee77fefa1fcba734e37bcdb58641d30351336f2/notebooks). The [reproducibility notes](docs/reproducibility.md) state which checks were performed and what was not rerun.
 
-* **Tables 1–7** use Fashion-MNIST or stylized simulations and should run after installing `requirements.txt`.
-* **Table 8** additionally downloads FEMNIST via `flwr-datasets` / `datasets` at runtime.
+## Citation
 
----
+If you use this code, please cite the paper. [CITATION.cff](CITATION.cff) provides repository citation metadata.
 
-<a id="running-on-google-colab-optional"></a>
-
-## ☁ Running on Google Colab (optional)
-
-You can also run the notebooks on **Google Colab** after downloading/cloning this repository.
-
-1. Clone (or upload) this repository into your Colab environment.
-2. Install dependencies.
-3. Open any notebook under `notebooks/` and run all cells.
-
-### Minimal Colab setup cell
-
-```python
-# In a Colab notebook cell
-!git clone https://github.com/AndrewKim1997/gcfl.git
-%cd gcfl
-!pip install -q -r requirements.txt
-```
-
-> We do not provide a hosted Colab runtime; the notebooks run in your own Colab environment after cloning/downloading this repo.
-
----
-
-<a id="reproducibility-notes"></a>
-
-## ✎ Reproducibility notes
-
-* Random seeds are fixed inside each notebook (see the `seed` field in the config).
-* Notebooks are designed to avoid noisy intermediate logs and print table-ready summaries only.
-* Large artifacts (raw datasets, checkpoints, long histories) are not committed to the repository.
-
----
-
-## ▦ Repository structure (typical)
-
-```
-├── notebooks/
-│   ├── Table_1_3(stylized_simulation).ipynb
-│   ├── Table_4(real_world_FL).ipynb
-│   ├── Table_5(estimator_reliability).ipynb
-│   ├── Table_6(noise_and_auditability).ipynb
-│   ├── Table_7(high_alignment_metrics).ipynb
-│   ├── Table_8(modern_attack).ipynb
-│   └── original/
-│       └── GCFL_main.ipynb
-├── requirements.txt
-├── CITATION.cff
-└── LICENSE
-```
-
----
-
-<a id="citation"></a>
-
-## ❖ Citation
-
-If you use this code, please cite the paper and this repository.
-
-```
-@article{
-kim2026gaming,
-title={Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It},
-author={Dongseok Kim and Hyoungsun Choi and Mohamed Jismy Aashik Rasool and Gisung Oh},
-journal={Transactions on Machine Learning Research},
-issn={2835-8856},
-year={2026},
-url={https://openreview.net/forum?id=Ck3q5YdWIv},
-note={}
+```bibtex
+@article{kim2026gaming,
+  title={Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It},
+  author={Dongseok Kim and Hyoungsun Choi and Mohamed Jismy Aashik Rasool and Gisung Oh},
+  journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
+  year={2026},
+  url={https://openreview.net/forum?id=Ck3q5YdWIv}
 }
 ```
 
-* See `CITATION.cff` for citation metadata.
+## License
 
----
-
-## ⚖ License
-
-This project is released under the terms of the license in `LICENSE`.
+Released under the [MIT License](LICENSE). Downloaded datasets retain their providers' terms.
