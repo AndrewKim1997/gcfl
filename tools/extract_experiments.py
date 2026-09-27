@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "notebooks" / "original" / "GCFL_main.ipynb"
+SOURCE = ROOT / "archive" / "GCFL_main.ipynb"
 EXPECTED_SHA256 = "da91b43ceef19ea9bb66e254e94d651be419efa878025361b1a29670ab179d8b"
 
 # Zero-based cell indexes in the original notebook. Cell 11 is a Colab !pip
@@ -22,6 +22,11 @@ EXPERIMENTS = {
     "05_high_alignment_metrics.py": 9,
     "06_modern_attack.py": 12,
 }
+
+# The first 284 source lines of cell 1 contain the simulator and its PoG
+# estimator. Keeping the API's underlying calculations as a source extract
+# makes their relationship to the notebook explicit.
+STYLIZED_CORE_LINES = 284
 
 
 def extract(*, check: bool = False) -> None:
@@ -48,6 +53,16 @@ def extract(*, check: bool = False) -> None:
                 raise RuntimeError(f"Experiment differs from source cell {index}: {target}")
         else:
             target.write_bytes(encoded)
+
+    core = "".join(cells[1]["source"][:STYLIZED_CORE_LINES])
+    compile(core, "stylized.py", "exec")
+    core_path = ROOT / "src" / "gcfl" / "stylized.py"
+    if check:
+        if not core_path.is_file() or core_path.read_bytes() != core.encode("utf-8"):
+            raise RuntimeError(f"Reusable simulator differs from original cell: {core_path}")
+    else:
+        core_path.parent.mkdir(parents=True, exist_ok=True)
+        core_path.write_bytes(core.encode("utf-8"))
 
 
 if __name__ == "__main__":
